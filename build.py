@@ -8,7 +8,7 @@ import json, re, shutil, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-SRC, DIST = ROOT / "src", ROOT / "docs"   # GitHub Pages serves /docs
+SRC, DIST = ROOT / "src", ROOT   # output to the repo root so GitHub Pages serves it with default settings
 
 # ---- Site-wide settings: edit here once, every page updates ----
 SITE = {
@@ -28,9 +28,11 @@ def render(template: str, ctx: dict, slug: str) -> str:
     return template
 
 def main():
-    if DIST.exists():
-        shutil.rmtree(DIST)
-    DIST.mkdir()
+    # Remove only generated output (never the whole directory: DIST is the repo root)
+    if (DIST / "assets").exists():
+        shutil.rmtree(DIST / "assets")
+    for page in (SRC / "pages").glob("*.html"):
+        (DIST / page.name).unlink(missing_ok=True)
     shutil.copytree(SRC / "assets", DIST / "assets")
     head = (SRC / "partials/head.html").read_text()
     header = (SRC / "partials/header.html").read_text()

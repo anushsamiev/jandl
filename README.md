@@ -22,7 +22,7 @@ No framework, no build dependencies beyond Python 3. Hosts anywhere that serves 
 - Shared header, footer, and `<head>` live in `src/partials/`.
 - Styles: `src/assets/css/site.css`. Script: `src/assets/js/site.js`.
 - Site-wide values (phone number, domain) are set once at the top of `build.py`.
-- Run `python3 build.py` to regenerate `docs/`. Deploy the `docs/` folder (GitHub Pages serves it directly).
+- Run `python3 build.py` to regenerate the pages at the repo root. GitHub Pages serves them from `main` with the folder set to `/ (root)`.
 
 ## Before launch (placeholders to replace)
 
@@ -43,5 +43,5 @@ No framework, no build dependencies beyond Python 3. Hosts anywhere that serves 
 
 ## Hosting
 
-Any static host. Netlify or Cloudflare Pages: publish directory `docs`, no build command needed .
-Add a custom 404 by pointing the host at `docs/404.html`.
+Any static host. Netlify or Cloudflare Pages: publish directory `/` (repo root), no build command needed .
+Add a custom 404 by pointing the host at `404.html`.

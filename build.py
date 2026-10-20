@@ -8,14 +8,15 @@ import json, re, shutil, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-SRC, DIST = ROOT / "src", ROOT / "dist"
+SRC, DIST = ROOT / "src", ROOT / "docs"   # GitHub Pages serves /docs
 
 # ---- Site-wide settings: edit here once, every page updates ----
 SITE = {
-    "site_url": "https://www.jlbailbonds.com",   # TODO: real domain
+    "site_url": "https://anushsamiev.github.io/jandl",   # TODO: real domain at launch
     "phone": "(318) 555-0199",                   # TODO: real phone number
     "tel": "+13185550199",                       # TODO: real phone number (E.164)
     "year": str(datetime.date.today().year),
+    "robots": "noindex, nofollow",              # draft preview. Set to "index, follow" at launch
 }
 
 def render(template: str, ctx: dict, slug: str) -> str:
@@ -43,6 +44,7 @@ def main():
         html = render(head + header + body + footer, ctx, slug)
         (DIST / page.name).write_text(html)
         print("built", page.name)
+    (DIST / ".nojekyll").write_text("")
 
 if __name__ == "__main__":
     main()

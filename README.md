@@ -22,12 +22,12 @@ No framework, no build dependencies beyond Python 3. Hosts anywhere that serves 
 - Shared header, footer, and `<head>` live in `src/partials/`.
 - Styles: `src/assets/css/site.css`. Script: `src/assets/js/site.js`.
 - Site-wide values (phone number, domain) are set once at the top of `build.py`.
-- Run `python3 build.py` to regenerate `dist/`. Deploy the `dist/` folder.
+- Run `python3 build.py` to regenerate `docs/`. Deploy the `docs/` folder (GitHub Pages serves it directly).
 
 ## Before launch (placeholders to replace)
 
 1. **Phone number.** `build.py` uses `(318) 555-0199`. Replace `phone` and `tel` with the real number.
-2. **Domain.** Set `site_url` in `build.py` (used for canonical URLs and structured data).
+2. **Domain and indexing.** Set `site_url` in `build.py` and change `robots` to `index, follow`. The draft preview is set to noindex.
 3. **Photos.** Drop real photos into `src/assets/img/` using the names in `src/assets/img/README.md`. Until then each slot shows a designed navy panel, so the site never looks broken.
 4. **Reviews.** Paste two or three real Google reviews into the reviews section of `src/pages/index.html` (marked with a TODO comment). Never invent reviews.
 5. **About copy.** Replace the "How we work" section in `src/pages/about.html` with the owners' real story (names, years in business).
@@ -43,5 +43,5 @@ No framework, no build dependencies beyond Python 3. Hosts anywhere that serves 
 
 ## Hosting
 
-Any static host. Netlify or Cloudflare Pages: publish directory `dist`, no build command needed (or `python3 build.py`).
-Add a custom 404 by pointing the host at `dist/404.html`.
+Any static host. Netlify or Cloudflare Pages: publish directory `docs`, no build command needed .
+Add a custom 404 by pointing the host at `docs/404.html`.
